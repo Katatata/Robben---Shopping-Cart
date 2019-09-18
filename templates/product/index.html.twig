@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+
+<style>
+    .model {
+        background-color: lightgrey;
+        width: 50%;
+        display: inline-block;
+    }
+    .model img {
+        width: inherit;
+    }
+</style>
+    <h1 class="d-flex justify-content-center site_title">Product index</h1>
+
+    <table class="table container table-striped table-bordered table-hover animated fadeIn"  style="max-width:90%">
+        <thead>
+            <tr>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>Id</th>
+                {% endif %}
+                <th>Name</th>
+                <th>Description</th>
+                <th>Taxcode</th>
+                <th>Price</th>
+                <th>Code</th>
+                <th style="min-width:150px;">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td>{{ product.id }}</td>
+                {% endif %}
+                <td>{{ product.Name }}</td>
+                <td>{{ product.Description }}</td>
+                <td>{{ product.taxcode }}</td>
+                <td>€ {{ product.price }}</td>
+                <td>{{ product.code }}</td>
+                <td>
+                    {% if is_granted('ROLE_ADMIN') %} 
+                        <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info">show</a>
+                        <a href="{{ path('product_edit', {'id': product.id}) }}" class="btn btn-warning">edit</a>
+                    {% else %}
+                        <a href="{{ path('add_to_cart', {'id': product.id}) }}" class="btn btn-success">Add to Cart</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# <div class="container">
+        <div class="model">
+            <img src="https://surlybikes.com/uploads/bikes/_medium_image/BridgeClub_BK2227-2000x1333.jpg"/>
+            <div class="model-name">
+                Product
+            </div>
+            <div class="model-description">
+                This is a description
+            </div>
+            <div class="model-price">
+                21.12
+            </div> #}
+            {# <a href="{{ path('add_to_cart', {'id': product.id}) }}" class="btn btn-success">Add to Cart</a> #}
+        {# </div>
+    </div> #}
+
+    <a href="{{ path('product_new') }}" class="d-flex justify-content-center">
+            <strong class="btn btn-primary animated pulse slow">Create new</strong>
+        </a>
+{% endblock %}

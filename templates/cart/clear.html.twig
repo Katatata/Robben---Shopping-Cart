@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddToCartController!{% endblock %}
+
+{% block body %}
+
+    <h1 class="d-flex justify-content-center site_title">Cart is cleared!</h1>
+
+    
+    <script>
+        setTimeout(() => {
+            window.location.href = '/cart';
+        }, 2000);
+    </script>
+
+{% endblock %}

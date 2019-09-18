@@ -1,0 +1,45 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="container">
+    <h1 class="d-flex justify-content-center site_title animated slow">REGISTER</h1>
+</div>
+
+<br>
+
+<div class="container">
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+            {{ form_label(form.email, "E-mail") }}
+            {{ form_widget(form.email) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.username, "Username") }}
+            {{ form_widget(form.username) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.plainPassword.first, "Password") }}
+            {{ form_widget(form.plainPassword.first) }}
+        </div>
+
+        <div class="form-group">
+            <label style="min-width:1000px">{{ form_label(form.plainPassword.second, "Confirm password") }}</label>
+            {{ form_widget(form.plainPassword.second) }}
+        </div>
+        
+        <br>
+
+        <div>
+            <input class="btn animated tada butt slow" type="submit" value="{{ 'Register'|trans }}" />
+        </div>
+    {{ form_end(form) }}
+
+    <br><br><br>
+    <div class="container">
+        <a href="/login" style="text-decoration:none;">&#8592; Login</a>
+    </div>
+
+</div>

@@ -1,0 +1,66 @@
+.site_title{ 
+    color: #f35626;
+    background-image: -webkit-linear-gradient(92deg,#f35626,#feab3a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: hue 60s infinite linear;
+    background-clip: text;
+    animation: hue 60s infinite linear;
+
+    font-size: 3rem;
+    font-weight: 100;
+    line-height: 2;
+    letter-spacing: -.05em;
+
+    font: "Roboto", Verdana, sans-serif;
+  }
+
+  .butt {
+    border: 2px solid #f35626;
+    line-height: 1.375;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-weight: 700;
+    color: #f35626;
+    cursor: pointer;
+    animation: hue 60s infinite linear;
+  }
+
+  body {
+    /* background-image: url('https://i.pinimg.com/originals/fa/07/de/fa07def1196074b19ab56c65280371ec.gif');
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-position:center bottom;
+    background-size: 100% auto; */ 
+    background-color: #085f53; 
+    color: white;
+  }
+
+  table {
+    background-image: none;
+    background: white
+  }
+
+  .butt {
+    background: white;
+  }
+
+  
+  @-webkit-keyframes hue {
+    from {
+      -webkit-filter: hue-rotate(0deg);
+    }
+
+    to {
+      -webkit-filter: hue-rotate(-360deg);
+    }
+  }
+  @keyframes hue {
+    from {
+      -webkit-filter: hue-rotate(0deg);
+    }
+
+    to {
+      -webkit-filter: hue-rotate(-360deg);
+    }
+  }

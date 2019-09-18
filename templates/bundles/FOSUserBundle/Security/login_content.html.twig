@@ -1,0 +1,51 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="container">
+    {% if error %}
+        <div class="alert alert-danger" role="alert" style="max-width:181.188px;border: 1px solid #ff7281;">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <h1 class="d-flex justify-content-center site_title">LOGIN</h1>
+</div>
+
+<br>
+
+<div class="container">
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% endif %}
+
+        <div class="form-group">
+            <label for="username">{{ 'Username'|trans }}</label>
+            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
+        </div>
+
+        <br>
+
+        <div class="form-group">
+            <label for="password">{{ 'Password'|trans }}</label>
+            <input type="password" class="form-control" id="password" name="_password" required="required" autocomplete="current-password" />
+        </div>
+
+        <br>
+<!-- 
+        <div class="form-group">
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+            <label for="remember_me">{{ 'Remember me'|trans }}</label>
+        </div> -->
+
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="remember_me" name="_remember_me" value="on">
+            <label class="custom-control-label" for="remember_me">{{ 'Remember me'|trans }}</label>
+        </div>
+
+        <br>
+
+        <input class="btn animated tada butt slow" type="submit" id="_submit" name="_submit" value="{{ 'Login'|trans }}" />
+    </form>
+
+    <br><br><br>
+    <div class="container">
+        <a href="/register" style="text-decoration:none;">Register &#8594;</a>
+    </div>
+</div>

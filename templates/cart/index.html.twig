@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddToCartController!{% endblock %}
+
+{% block body %}
+
+{% if empty == false %}
+<h1 class="d-flex justify-content-center site_title">Cart</h1>
+
+    <table id="category" class="table container table-striped table-bordered table-hover animated fadeIn"  style="max-width:90%">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Aantal</th>
+                <th>Prijs</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for array in cart %}
+            <tr>
+                <td>{{ array.naam }}</td>
+                <td>
+                    <a class="btn btn-warning min" onclick="update(this, 'de')">-</a>
+                    {# <span>{{ array.aantal }}</span> #}
+                    <input id="{{ array.id }}" value="{{ array.aantal }}" style="width: 32px;text-align:center" onchange="timer(this)"/>
+                    <a class="btn btn-success plus" onclick="update(this, 'in')">+</a>
+                    <a href="{{ path('remove', {'id': array.id}) }}" class="btn btn-danger" style="float:right;">X</a>
+                </td>
+                <td class="prijs">€ {{ array.prijs|number_format(2, '.', ',') }}</td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td></td>
+                <td style="text-align:right"><b>Totale prijs:</b></td>
+                <td>€ {{ total }}</td>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center">
+        <a href="{{ path('clear') }}">
+                <strong class="btn btn-danger animated pulse slow">Clear cart</strong>
+        </a>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+        <a href="{{ path('checkout') }}">
+                <strong class="btn btn-success animated pulse slow">Checkout</strong>
+        </a>
+    </div>
+
+
+<script>
+    function update(element, crease) {
+        if(crease === 'in') {
+            element.previousElementSibling.value++;
+            timer(element.previousElementSibling);
+        }
+        else if(crease === 'de') {
+            let number = element.nextElementSibling.value;
+
+            if(number === '1') {
+                element.style.pointerEvents = 'none';
+                return;
+            }
+            else {
+                element.nextElementSibling.value--;
+                timer(element.nextElementSibling);
+            }
+        }
+    }
+
+    let time;
+
+    function timer(element) {
+        clearTimeout(time);
+
+        time = setTimeout(() => {
+
+            window.location.href = element.id + '/update/' + element.value;
+
+        }, 2000);
+    }
+</script>
+
+{% else %}
+    <h1 class="d-flex justify-content-center site_title">Your cart is empty</h1>
+
+    <a href="/product" class="d-flex justify-content-center">
+        <strong class="btn btn-primary animated pulse slow">Go to products</strong>
+    </a>
+{% endif %}
+
+{% endblock %}

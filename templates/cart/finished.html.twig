@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddToCartController!{% endblock %}
+
+{% block body %}
+
+    <h1 class="d-flex justify-content-center site_title">Info:</h1>
+
+    <h2 class="d-flex justify-content-center site_title">Thanks {{ user.Username }}!</h1>
+
+    <h4 class="d-flex justify-content-center">Sent Invoice to {{ user.Email }}</h4>
+
+    <br>
+    <br>
+    <br>
+    <div class="d-flex justify-content-center">
+            <a href="/product">
+                    <strong class="btn btn-primary animated pulse slow">Shop for more</strong>
+            </a>
+    </div>
+
+{% endblock %}

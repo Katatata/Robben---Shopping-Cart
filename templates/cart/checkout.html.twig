@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddToCartController!{% endblock %}
+
+{% block body %}
+
+    <h1 class="d-flex justify-content-center site_title">Checkout</h1>
+
+    <div class="d-flex justify-content-center ">
+        Is your data corect?
+        </br>
+        Username: {{ user.username }}
+        </br>
+        Email: {{ user.email }}
+        </br>  
+    </div>
+
+        <table id="category" class="table container table-striped table-bordered table-hover animated fadeIn"  style="max-width:90%">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Aantal</th>
+                        <th>Prijs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for array in cart %}
+                    <tr>
+                        <td>{{ array.naam }}</td>
+                        <td>{{ array.aantal}}</td>
+                        <td class="prijs">€ {{ array.prijs|number_format(2, '.', ',') }}</td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td style="text-align:right"><b>Totale prijs:</b></td>
+                        <td>€ {{ total }}</td>
+                </tbody>
+            </table>
+    </div>
+
+    <div class="d-flex justify-content-center ">
+        {{ form(form) }}
+    </div>
+
+{% endblock %}

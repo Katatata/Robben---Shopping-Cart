@@ -1,0 +1,14 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div class="container">
+        <h1 class="d-flex justify-content-center site_title animated slow">Welcome!</h1>
+    </div>
+
+    <a class="d-flex justify-content-center" href="/">
+        <button class="btn btn-success navbar-btn">Go Home</button>
+    </a>
+
+{% endblock fos_user_content %}
